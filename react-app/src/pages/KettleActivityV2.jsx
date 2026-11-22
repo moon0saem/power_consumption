@@ -137,7 +137,7 @@ export default function KettleActivityV2() {
   return (
     <section className="activity-section kettle-activity">
       <div className="activity-intro">
-        <div><span className="activity-tag orange">활동 2</span><h2>적절한 주전자 선택하기</h2><p>세 전기 주전자를 같은 조건에서 실험하고, 물이 끓기 시작하는 시간을 비교해 봅시다.</p></div>
+        <div><span className="activity-tag orange">활동 2</span><h2>전기 주전자 선택하기</h2><p>세 전기 주전자를 같은 조건에서 실험하고, 물이 끓기 시작하는 시간을 비교해 봅시다.</p></div>
         <img src={asset('mart.webp')} alt="전기 주전자를 고르는 고심이" />
       </div>
 

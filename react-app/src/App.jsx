@@ -6,7 +6,7 @@ import { resolveRoute } from './utils/routing.js'
 
 const routes = {
   home: { label: '홈', short: '홈' },
-  lesson1: { label: '1차시 · 전기 기구 탐색', short: '1차시' },
+  lesson1: { label: '1차시 · 다양한 전기 기구 탐색', short: '1차시' },
   diet: { label: '2차시 · 에너지 다이어트', short: '2차시' },
 }
 

@@ -12,7 +12,7 @@ export default function HomePage({ navigate }) {
         <div className="lesson-buttons" aria-label="차시 선택">
           <button onClick={() => navigate('lesson1')}>
             <span>1차시</span>
-            <strong>전기 기구 탐색하기</strong>
+            <strong>다양한 전기 기구 탐색</strong>
           </button>
           <button onClick={() => navigate('diet')}>
             <span>2차시</span>

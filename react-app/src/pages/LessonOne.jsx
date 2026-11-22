@@ -87,7 +87,7 @@ function ApplianceActivity({ onNext }) {
 
     {valid && <div className="kettle-next-action revealed">
       <p>소비전력과 전환되는 에너지 사이에는 어떤 특징이 있나요? 학습지에 정리해 봅시다.</p>
-      <button type="button" className="primary appliance-next-button" onClick={onNext}>적절한 주전자 선택하기</button>
+      <button type="button" className="primary appliance-next-button" onClick={onNext}>다음 활동 &gt; 전기 주전자 선택하기</button>
     </div>}
   </section>
 }
@@ -163,5 +163,5 @@ export default function LessonOne() {
     setActivity(nextActivity)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
-  return <div className="page lesson-page"><header className="page-header"><span>LESSON 01</span><h1>전기 기구 탐색하기</h1><p>데이터를 관찰하고 비교하여 소비전력의 특징을 스스로 발견해 봅시다.</p><div className="journey-progress" aria-label="1차시 활동 선택"><button type="button" className={activity === 'appliances' ? 'active' : 'complete'} onClick={() => switchActivity('appliances')} aria-current={activity === 'appliances' ? 'step' : undefined}><i>{activity === 'appliances' ? '1' : '✓'}</i>전기 기구 조사하기</button><b /><button type="button" className={activity === 'kettle' ? 'active' : kettleUnlocked ? 'available' : ''} disabled={!kettleUnlocked} onClick={() => switchActivity('kettle')} aria-current={activity === 'kettle' ? 'step' : undefined}><i>2</i>적절한 주전자 선택하기</button></div></header>{activity === 'appliances' ? <ApplianceActivity onNext={openKettle} /> : <KettleActivityV2 />}</div>
+  return <div className="page lesson-page"><header className="page-header"><span>1차시</span><h1>다양한 전기 기구 탐색</h1><p>데이터를 관찰하고 비교하여 소비전력의 특징을 스스로 발견해 봅시다.</p><div className="journey-progress" aria-label="1차시 활동 선택"><button type="button" className={activity === 'appliances' ? 'active' : 'complete'} onClick={() => switchActivity('appliances')} aria-current={activity === 'appliances' ? 'step' : undefined}><i>{activity === 'appliances' ? '1' : '✓'}</i>전기 기구 조사하기</button><b /><button type="button" className={activity === 'kettle' ? 'active' : kettleUnlocked ? 'available' : ''} disabled={!kettleUnlocked} onClick={() => switchActivity('kettle')} aria-current={activity === 'kettle' ? 'step' : undefined}><i>2</i>전기 주전자 선택하기</button></div></header>{activity === 'appliances' ? <ApplianceActivity onNext={openKettle} /> : <KettleActivityV2 />}</div>
 }
