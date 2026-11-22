@@ -93,15 +93,15 @@ export default function HomeEnergyDiet() {
       </header>
 
       <nav className="diet-steps" aria-label="에너지 다이어트 진행 단계">
-        <button className={stage === 1 ? 'active' : 'complete'} onClick={() => setStage(1)}><i>{stage > 1 ? '✓' : '1'}</i><span><b>평소 생활 설정</b><small>기기를 눌러 사용 습관 입력</small></span></button>
+        <button className={stage === 1 ? 'active' : 'complete'} onClick={() => setStage(1)}><i>{stage > 1 ? '✓' : '1'}</i><span><b>전기 기구 사용 습관 입력</b><small>기기를 눌러 사용 습관 입력</small></span></button>
         <em />
-        <button disabled={!baseline} className={stage === 2 ? 'active' : stage > 2 ? 'complete' : ''} onClick={() => baseline && setStage(2)}><i>{stage > 2 ? '✓' : '2'}</i><span><b>현재 사용량 관찰</b><small>어떤 기기가 많이 사용할까?</small></span></button>
+        <button disabled={!baseline} className={stage === 2 ? 'active' : stage > 2 ? 'complete' : ''} onClick={() => baseline && setStage(2)}><i>{stage > 2 ? '✓' : '2'}</i><span><b>전기 에너지 사용량 분석</b><small>어떤 기기가 많이 사용할까?</small></span></button>
         <em />
         <button disabled={!baseline || !canStartDiet} className={stage === 3 ? 'active' : ''} onClick={() => baseline && canStartDiet && setStage(3)}><i>3</i><span><b>나만의 다이어트</b><small>사용 습관과 절전 방식 바꾸기</small></span></button>
       </nav>
 
-      {stage === 1 && <section className="diet-stage-intro"><span>STEP 1</span><h2>현재 전기 에너지 소비 습관 입력하기</h2><p>우리 집의 정확한 값이 아니어도 괜찮아요. 평소 나의 생활과 비슷하게 설정해 보세요.</p></section>}
-      {stage === 2 && <section className="diet-stage-intro"><span>STEP 2</span><h2>현재 전기 에너지 사용량 살펴보기</h2><p>내 생활에서는 어떤 전기 기구가 하루 동안 전기 에너지를 많이 사용하고 있을까요?</p></section>}
+      {stage === 1 && <section className="diet-stage-intro"><span>STEP 1</span><h2>전기 기구 사용 습관 입력하기</h2><p>우리 집의 정확한 값이 아니어도 괜찮아요. 평소 나의 생활과 비슷하게 설정해 보세요.</p></section>}
+      {stage === 2 && <section className="diet-stage-intro"><span>STEP 2</span><h2>전기 에너지 사용량 분석하기</h2><p>내 생활에서는 어떤 전기 기구가 하루 동안 전기 에너지를 많이 사용하고 있을까요?</p></section>}
       {stage === 3 && <section className="diet-stage-intro"><span>STEP 3</span><h2>나만의 에너지 다이어트</h2><p>생활에 필요한 기능은 유지하면서 사용 시간과 절전 방식을 조절해 보세요.</p></section>}
 
       {stage === 1 && <section className="stage-action-card stage-action-top"><div><span>설정을 마쳤나요?</span><h3>나의 현재 사용량을 확인해 봅시다.</h3></div><button type="button" className="primary setup-complete-button" onClick={completeSetup}>설정 완료</button></section>}
