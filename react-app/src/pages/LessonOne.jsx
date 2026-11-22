@@ -14,16 +14,16 @@ const applianceDefinitions = [
   { appliance: 'TV', correctEnergy: '빛에너지' },
   { appliance: '선풍기', correctEnergy: '운동 에너지' },
   { appliance: '전기 밥솥', correctEnergy: '열에너지' },
-  { appliance: '전기 다리미', correctEnergy: '열에너지' },
   { appliance: 'LED 전등', correctEnergy: '빛에너지' },
-  { appliance: '청소기', correctEnergy: '운동 에너지' },
+  { appliance: '전기 다리미', correctEnergy: '열에너지' },
+  { appliance: '세탁기', correctEnergy: '운동 에너지' },
 ]
 const initialApplianceRows = applianceDefinitions.map(({ appliance }) => ({ appliance, energy: '', power: 0 }))
 const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`
 
 function ApplianceActivity({ onNext }) {
-  const [rows, setRows] = usePersistedState('energy-class:appliance-fixed-v2', initialApplianceRows)
-  const [saved, setSaved] = usePersistedState('energy-class:appliance-fixed-saved-v2', [])
+  const [rows, setRows] = usePersistedState('energy-class:appliance-fixed-v3', initialApplianceRows)
+  const [saved, setSaved] = usePersistedState('energy-class:appliance-fixed-saved-v3', [])
   const [message, setMessage] = useState('')
   const [incorrect, setIncorrect] = useState([])
   const valid = saved.length === applianceDefinitions.length

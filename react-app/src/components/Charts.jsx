@@ -7,13 +7,15 @@ export function BarChart({ items, valueKey = 'value', labelKey = 'label', colorK
       {items.map((item, index) => {
         const value = Number(item[valueKey]) || 0
         const percentage = Math.max(2, value / max * 100)
+        const formattedValue = `${Number.isInteger(value) ? value.toLocaleString() : value.toFixed(1)}${unit}`
         return (
           <div className="bar-row" key={`${item[labelKey]}-${index}`}>
             <span className="bar-label">{item[labelKey]}</span>
             <div className="bar-track">
               <span className="bar-fill" style={orientation === 'vertical' ? { width: '100%', height: `${percentage}%`, background: item[colorKey] || '#177f70' } : { width: `${percentage}%`, background: item[colorKey] || '#177f70' }} />
+              {orientation === 'vertical' && <strong className="bar-value" style={{ bottom: `calc(${percentage}% + 6px)` }}>{formattedValue}</strong>}
             </div>
-            <strong>{Number.isInteger(value) ? value.toLocaleString() : value.toFixed(1)}{unit}</strong>
+            {orientation !== 'vertical' && <strong>{formattedValue}</strong>}
           </div>
         )
       })}
