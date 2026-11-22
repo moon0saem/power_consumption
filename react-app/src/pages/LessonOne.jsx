@@ -59,7 +59,7 @@ function ApplianceActivity({ onNext }) {
     setSaved(rows)
   }
   return <section className="activity-section">
-    <div className="activity-intro appliance-intro"><div><span className="activity-tag">활동 1</span><h2>전기 기구 조사하기</h2><p>집 안의 전기 기구를 살펴보고, 어떤 에너지로 바뀌는지와 소비전력을 비교해 봅시다.</p></div><img src={asset('home.webp')} alt="다양한 전기 기구가 있는 고심이네 집" /></div>
+    <div className="activity-intro appliance-intro"><div><span className="activity-tag">활동 1</span><h2>전기 기구 조사하기</h2><p>고심이네 집의 전기 기구들의 소비 전력을 확인해 봅시다.</p></div><img src={asset('home.webp')} alt="다양한 전기 기구가 있는 고심이네 집" /></div>
 
     <div className={valid ? 'appliance-workspace is-split' : 'appliance-workspace'}>
       <div className="learning-card appliance-input-card">
