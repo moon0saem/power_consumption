@@ -2,6 +2,8 @@
 
 기존 Streamlit 교육용 앱을 브라우저에서만 실행되는 React + Vite 정적 웹앱으로 재구현한 프로젝트입니다. 원본 Python 프로젝트와 분리되어 있으며 서버나 Python 런타임이 필요하지 않습니다.
 
+배포 주소: https://moon0saem.github.io/power_consumption/
+
 ## 실행
 
 ```bash
