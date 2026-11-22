@@ -126,7 +126,7 @@ export default function HomeEnergyDiet() {
       {stage === 2 && <section className="usage-observation">
         <div className="step2-overview-grid">
           <div className="usage-breakdown">
-            <div className="usage-title"><div><span>오늘 나의 전기 에너지 사용량</span><strong>{Math.round(comparison.before.total * 1000).toLocaleString()}<small> Wh/day</small></strong></div></div>
+            <div className="usage-title"><div><span>나의 하루 평균 전기 에너지 사용량</span><strong>{Math.round(comparison.before.total * 1000).toLocaleString()}<small> Wh/day</small></strong></div></div>
             <EnergyPieChart items={initialChartItems} total={comparison.before.total} />
           </div>
           <div className="energy-equivalent-section">
