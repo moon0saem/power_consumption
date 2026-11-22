@@ -97,7 +97,7 @@ function BoilingSimulation({ conditions, runId, onComplete }) {
   )
 }
 
-export default function KettleActivityV2({ onNext }) {
+export default function KettleActivityV2() {
   const [conditions, setConditions] = usePersistedState('energy-class:kettle-conditions-v5', defaultConditions)
   const [conditionsComplete, setConditionsComplete] = useState(false)
   const [conditionMessage, setConditionMessage] = useState('')
@@ -137,7 +137,7 @@ export default function KettleActivityV2({ onNext }) {
   return (
     <section className="activity-section kettle-activity">
       <div className="activity-intro">
-        <div><span className="activity-tag orange">활동 1</span><h2>적절한 주전자 선택하기</h2><p>세 전기 주전자를 같은 조건에서 실험하고, 물이 끓기 시작하는 시간을 비교해 봅시다.</p></div>
+        <div><span className="activity-tag orange">활동 2</span><h2>적절한 주전자 선택하기</h2><p>세 전기 주전자를 같은 조건에서 실험하고, 물이 끓기 시작하는 시간을 비교해 봅시다.</p></div>
         <img src={asset('mart.webp')} alt="전기 주전자를 고르는 고심이" />
       </div>
 
@@ -173,7 +173,6 @@ export default function KettleActivityV2({ onNext }) {
 
       {allRevealed && <div className="kettle-next-action revealed">
         <p>각 전기 주전자의 성능과 소비전력을 고려하여 고심이에게 가장 적절한 주전자를 추천해 봅시다. 학습지에 정리해 보세요.</p>
-        <button type="button" className="primary appliance-next-button" onClick={onNext}>고심이네 집의 전기 기구 조사하러 가기</button>
       </div>}
     </section>
   )

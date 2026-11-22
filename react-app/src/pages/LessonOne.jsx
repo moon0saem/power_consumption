@@ -21,7 +21,7 @@ const applianceDefinitions = [
 const initialApplianceRows = applianceDefinitions.map(({ appliance }) => ({ appliance, energy: '', power: 0 }))
 const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`
 
-function ApplianceActivity() {
+function ApplianceActivity({ onNext }) {
   const [rows, setRows] = usePersistedState('energy-class:appliance-fixed-v2', initialApplianceRows)
   const [saved, setSaved] = usePersistedState('energy-class:appliance-fixed-saved-v2', [])
   const [message, setMessage] = useState('')
@@ -59,7 +59,7 @@ function ApplianceActivity() {
     setSaved(rows)
   }
   return <section className="activity-section">
-    <div className="activity-intro appliance-intro"><div><span className="activity-tag">활동 2</span><h2>전기 기구 조사하기</h2><p>집 안의 전기 기구를 살펴보고, 어떤 에너지로 바뀌는지와 소비전력을 비교해 봅시다.</p></div><img src={asset('home.webp')} alt="다양한 전기 기구가 있는 고심이네 집" /></div>
+    <div className="activity-intro appliance-intro"><div><span className="activity-tag">활동 1</span><h2>전기 기구 조사하기</h2><p>집 안의 전기 기구를 살펴보고, 어떤 에너지로 바뀌는지와 소비전력을 비교해 봅시다.</p></div><img src={asset('home.webp')} alt="다양한 전기 기구가 있는 고심이네 집" /></div>
 
     <div className={valid ? 'appliance-workspace is-split' : 'appliance-workspace'}>
       <div className="learning-card appliance-input-card">
@@ -85,7 +85,10 @@ function ApplianceActivity() {
       </div>
     </div>
 
-    {valid && <p className="worksheet-prompt revealed">소비전력과 전환되는 에너지 사이에는 어떤 특징이 있나요? 학습지에 정리해 봅시다.</p>}
+    {valid && <div className="kettle-next-action revealed">
+      <p>소비전력과 전환되는 에너지 사이에는 어떤 특징이 있나요? 학습지에 정리해 봅시다.</p>
+      <button type="button" className="primary appliance-next-button" onClick={onNext}>적절한 주전자 선택하기</button>
+    </div>}
   </section>
 }
 
@@ -112,7 +115,7 @@ function KettleActivity() {
   const allRevealed = state.revealed.length === 3
 
   return <section className="activity-section kettle-activity">
-    <div className="activity-intro"><div><span className="activity-tag orange">활동 1</span><h2>어떤 전기 주전자를 사는 게 좋을까?</h2><p>실제 판매 데이터와 성능 실험 결과를 근거로 고심이에게 가장 효율적인 제품을 추천해 봅시다.</p></div><img src={asset('mart.webp')} alt="전기 주전자를 고르는 고심이" /></div>
+    <div className="activity-intro"><div><span className="activity-tag orange">활동 2</span><h2>어떤 전기 주전자를 사는 게 좋을까?</h2><p>실제 판매 데이터와 성능 실험 결과를 근거로 고심이에게 가장 효율적인 제품을 추천해 봅시다.</p></div><img src={asset('mart.webp')} alt="전기 주전자를 고르는 고심이" /></div>
     <div className="learning-card">
       <StepHeading number="0" title="실제 전기 주전자 데이터 둘러보기" done />
       <p className="muted">우리나라에서 판매되는 전기 주전자 50개의 용량과 소비전력 데이터입니다.</p>
@@ -149,16 +152,16 @@ function KettleActivity() {
 }
 
 export default function LessonOne() {
-  const [activity, setActivity] = usePersistedState('energy-class:lesson1-activity-v1', 'kettle')
-  const [appliancesUnlocked, setAppliancesUnlocked] = usePersistedState('energy-class:lesson1-appliances-unlocked-v1', activity === 'appliances')
-  const openAppliances = () => {
-    setAppliancesUnlocked(true)
-    setActivity('appliances')
+  const [activity, setActivity] = usePersistedState('energy-class:lesson1-activity-v2', 'appliances')
+  const [kettleUnlocked, setKettleUnlocked] = usePersistedState('energy-class:lesson1-kettle-unlocked-v2', activity === 'kettle')
+  const openKettle = () => {
+    setKettleUnlocked(true)
+    setActivity('kettle')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
   const switchActivity = (nextActivity) => {
     setActivity(nextActivity)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
-  return <div className="page lesson-page"><header className="page-header"><span>LESSON 01</span><h1>전기 기구 탐색하기</h1><p>데이터를 관찰하고 비교하여 소비전력의 특징을 스스로 발견해 봅시다.</p><div className="journey-progress" aria-label="1차시 활동 선택"><button type="button" className={activity === 'kettle' ? 'active' : 'complete'} onClick={() => switchActivity('kettle')} aria-current={activity === 'kettle' ? 'step' : undefined}><i>{activity === 'kettle' ? '1' : '✓'}</i>적절한 주전자 선택하기</button><b /><button type="button" className={activity === 'appliances' ? 'active' : appliancesUnlocked ? 'available' : ''} disabled={!appliancesUnlocked} onClick={() => switchActivity('appliances')} aria-current={activity === 'appliances' ? 'step' : undefined}><i>2</i>전기 기구 조사하기</button></div></header>{activity === 'kettle' ? <KettleActivityV2 onNext={openAppliances} /> : <ApplianceActivity />}</div>
+  return <div className="page lesson-page"><header className="page-header"><span>LESSON 01</span><h1>전기 기구 탐색하기</h1><p>데이터를 관찰하고 비교하여 소비전력의 특징을 스스로 발견해 봅시다.</p><div className="journey-progress" aria-label="1차시 활동 선택"><button type="button" className={activity === 'appliances' ? 'active' : 'complete'} onClick={() => switchActivity('appliances')} aria-current={activity === 'appliances' ? 'step' : undefined}><i>{activity === 'appliances' ? '1' : '✓'}</i>전기 기구 조사하기</button><b /><button type="button" className={activity === 'kettle' ? 'active' : kettleUnlocked ? 'available' : ''} disabled={!kettleUnlocked} onClick={() => switchActivity('kettle')} aria-current={activity === 'kettle' ? 'step' : undefined}><i>2</i>적절한 주전자 선택하기</button></div></header>{activity === 'appliances' ? <ApplianceActivity onNext={openKettle} /> : <KettleActivityV2 />}</div>
 }
