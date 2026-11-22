@@ -1,0 +1,321 @@
+.condition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.condition-card {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #f8faf9;
+}
+
+.condition-card h3 {
+  margin: 0;
+  text-align: center;
+  font-size: 18px;
+}
+
+.condition-card img {
+  display: block;
+  width: 100%;
+  height: 170px;
+  margin: 10px auto;
+  object-fit: contain;
+}
+
+.condition-submit {
+  margin-top: 18px;
+}
+
+.experiment-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #eef6f3;
+}
+
+.experiment-toolbar p {
+  margin: 0;
+  color: #52675e;
+}
+
+.experiment-ready {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  border: 2px dashed #c6d8d0;
+  border-radius: 18px;
+  color: var(--muted);
+}
+
+.boiling-simulation {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.boiling-kettle {
+  min-width: 0;
+  padding: 17px;
+  border: 2px solid #dce6e1;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #fff, #f4f8f6);
+  transition: border-color .25s, box-shadow .25s;
+}
+
+.boiling-kettle.finished {
+  border-color: #55a88b;
+  box-shadow: 0 10px 30px rgba(25, 116, 84, .14);
+}
+
+.boiling-product-title {
+  display: grid;
+  text-align: center;
+}
+
+.boiling-product-title span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.boiling-kettle > img {
+  display: block;
+  width: 100%;
+  height: 120px;
+  margin: 8px auto;
+  object-fit: contain;
+}
+
+.water-window {
+  position: relative;
+  width: min(150px, 78%);
+  height: 150px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 4px solid #9eb4ac;
+  border-radius: 22px 22px 42px 42px;
+  background: #e9f5fa;
+  box-shadow: inset 0 0 20px rgba(20, 93, 125, .12);
+}
+
+.heated-water {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: color-mix(in srgb, var(--water-color) 58%, #bcefff);
+  transition: height .2s;
+}
+
+.heated-water::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: 0;
+  left: 0;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .55);
+}
+
+.heated-water i {
+  position: absolute;
+  bottom: -12px;
+  left: var(--bubble-left);
+  width: var(--bubble-size);
+  height: var(--bubble-size);
+  border: 2px solid rgba(255, 255, 255, .9);
+  border-radius: 50%;
+  opacity: var(--bubble-opacity);
+  animation: bubble-up var(--bubble-speed) linear var(--bubble-delay) infinite;
+}
+
+.water-window > strong {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  padding: 4px 7px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .85);
+  color: #155069;
+  font-size: 13px;
+}
+
+.boiling-time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 13px;
+  padding: 10px 12px;
+  border-radius: 11px;
+  background: #e8efec;
+}
+
+.boiling-time span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.boiling-kettle.finished .boiling-time {
+  background: #dff3e9;
+  color: #17633d;
+}
+
+@keyframes bubble-up {
+  from { transform: translateY(0) scale(.65); }
+  to { transform: translateY(-115px) scale(1.15); }
+}
+
+.power-check {
+  margin-top: 28px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.power-check-title span {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.power-check-title h3 {
+  margin: 6px 0 18px;
+}
+
+.power-check .product-card p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.power-check .product-card p b {
+  color: var(--ink);
+}
+
+.kettle-next-action {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  margin: 24px 0 54px;
+  padding: 24px;
+  border: 1px solid #c8ddd5;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #eef8f4, #f6fae9);
+  text-align: center;
+}
+
+.kettle-next-action p {
+  max-width: 850px;
+  margin: 0;
+  color: #264b40;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.appliance-next-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(100%, 420px);
+  text-decoration: none;
+  animation: next-button-blink 1.35s ease-in-out infinite;
+}
+
+@keyframes next-button-blink {
+  0%, 100% {
+    background: #0b6b5d;
+    box-shadow: 0 0 0 0 rgba(11, 107, 93, .18);
+    transform: translateY(0);
+  }
+  50% {
+    background: #0e8a76;
+    box-shadow: 0 0 0 10px rgba(11, 107, 93, .12), 0 10px 25px rgba(11, 107, 93, .24);
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 820px) {
+  .condition-grid,
+  .boiling-simulation {
+    grid-template-columns: 1fr;
+  }
+
+  .condition-card {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 0 20px;
+    align-items: center;
+  }
+
+  .condition-card h3 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .condition-card img {
+    grid-column: 1;
+    grid-row: 2 / 4;
+    height: 130px;
+  }
+
+  .condition-card .range-field {
+    grid-column: 2;
+  }
+
+  .boiling-kettle {
+    display: grid;
+    grid-template-columns: 130px 1fr 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .boiling-kettle > img {
+    height: 100px;
+  }
+
+  .water-window {
+    width: 120px;
+    height: 125px;
+  }
+
+  .boiling-time {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .condition-card,
+  .boiling-kettle {
+    display: block;
+  }
+
+  .experiment-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .water-window {
+    width: 145px;
+    height: 145px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heated-water i {
+    animation-duration: 1.5s;
+  }
+
+  .appliance-next-button {
+    animation: none;
+  }
+}
