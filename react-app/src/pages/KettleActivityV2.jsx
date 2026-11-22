@@ -4,10 +4,11 @@ import { Notice, RangeField, StepHeading } from '../components/UI.jsx'
 import '../kettle-lab.css'
 
 const products = [
-  { id: 'A', power: 1800, color: '#367bd6' },
-  { id: 'B', power: 1400, color: '#2b927e' },
-  { id: 'C', power: 1300, color: '#ed9a35' },
+  { id: 'A', power: 1800 },
+  { id: 'B', power: 1400 },
+  { id: 'C', power: 1300 },
 ]
+const waterColor = '#4aafe5'
 
 const defaultConditions = {
   A: { water: 100, temperature: 20 },
@@ -81,7 +82,7 @@ function BoilingSimulation({ conditions, runId, onComplete }) {
               <span>{result.water}mL · 시작 {result.startTemperature}°C</span>
             </div>
             <img src={asset(`kettle_${result.product.toLowerCase()}.png`)} alt={`전기 주전자 ${result.product}`} />
-            <div className="water-window" style={{ '--water-color': products.find((item) => item.id === result.product).color }}>
+            <div className="water-window" style={{ '--water-color': waterColor }}>
               <div className="heated-water" style={{ height: `${58 + result.water / 1000 * 22}%`, '--bubble-opacity': Math.max(0, (progress - .12) / .88), '--bubble-speed': `${Math.max(.38, 1.25 - progress * .75)}s` }}>
                 {Array.from({ length: 9 }, (_, index) => <i key={index} style={{ '--bubble-left': `${8 + (index * 19) % 82}%`, '--bubble-delay': `${-(index * .17)}s`, '--bubble-size': `${5 + index % 4 * 2}px` }} />)}
               </div>
@@ -137,12 +138,12 @@ export default function KettleActivityV2() {
   return (
     <section className="activity-section kettle-activity">
       <div className="activity-intro">
-        <div><span className="activity-tag orange">활동 2</span><h2>전기 주전자 선택하기</h2><p>세 전기 주전자를 같은 조건에서 실험하고, 물이 끓기 시작하는 시간을 비교해 봅시다.</p></div>
+        <div><span className="activity-tag orange">활동 2</span><h2>전기 주전자 선택하기</h2><p>세 전기 주전자 중 어떤 것을 사는 게 좋을지 비교해 봅시다.</p></div>
         <img src={asset('mart.webp')} alt="전기 주전자를 고르는 고심이" />
       </div>
 
       <div className="learning-card">
-        <StepHeading number="1" title="실험 조건 설정하기" done={conditionsComplete} />
+        <StepHeading number="1" title="성능을 확인할 수 있는 실험 조건 설정하기" done={conditionsComplete} />
         <div className="condition-grid">
           {products.map(({ id }) => <article className="condition-card" key={id}>
             <h3>전기 주전자 {id}</h3>
@@ -156,7 +157,7 @@ export default function KettleActivityV2() {
       </div>
 
       {conditionsComplete && <div className="learning-card revealed">
-        <StepHeading number="2" title="전기주전자의 성능 확인하기" done={experimentComplete} />
+        <StepHeading number="2" title="성능을 확인하기" done={experimentComplete} />
         <div className="experiment-toolbar"><p>실험 시작 버튼을 누르면 세 주전자가 동시에 물을 끓입니다.</p><button className="primary" onClick={startExperiment}>{runId ? '실험 다시 하기' : '실험 시작'}</button></div>
         {runId ? <BoilingSimulation conditions={conditions} runId={runId} onComplete={() => setExperimentComplete(true)} /> : <div className="experiment-ready">세 주전자가 같은 조건으로 준비되었습니다.</div>}
       </div>}
