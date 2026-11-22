@@ -55,8 +55,7 @@ export default function App() {
         {route === 'diet' && <HomeEnergyDiet />}
       </main>
 
-      {route !== 'home' && <footer className="no-print">
-        <p>수치를 직접 바꾸고, 그래프를 관찰하고, 과학적 근거로 판단해 보세요.</p>
+      {route !== 'home' && <footer className="no-print footer-reset-only">
         <button className="text-button" onClick={() => { if (confirm('이 기기에 저장된 학습 진행 상황을 모두 지울까요?')) { Object.keys(localStorage).filter((key) => key.startsWith('energy-class:')).forEach((key) => localStorage.removeItem(key)); location.reload() } }}>학습 기록 초기화</button>
       </footer>}
     </div>
