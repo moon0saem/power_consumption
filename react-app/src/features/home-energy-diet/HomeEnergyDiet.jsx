@@ -88,7 +88,7 @@ export default function HomeEnergyDiet() {
   return (
     <div className="home-diet-page">
       <header className="home-diet-hero">
-        <div><span>NEW LESSON 02 · 생활 속 적용</span><h1>고심이네 집 에너지 다이어트</h1><p>집 안의 전기 기구를 살펴보고, 필요한 생활은 유지하면서 전기 에너지 사용량을 줄여 봅시다.</p></div>
+        <div><span>NEW LESSON 02 · 생활 속 적용</span><h1>에너지 다이어트</h1><p>집 안의 전기 기구를 살펴보고, 필요한 생활은 유지하면서 전기 에너지 사용량을 줄여 봅시다.</p></div>
         <button type="button" className="diet-reset-link" onClick={resetAll}>에너지 다이어트 초기화</button>
       </header>
 

@@ -16,7 +16,7 @@ export default function HomePage({ navigate }) {
           </button>
           <button onClick={() => navigate('diet')}>
             <span>2차시</span>
-            <strong>고심이네 집 에너지 다이어트</strong>
+            <strong>에너지 다이어트</strong>
           </button>
         </div>
       </div>

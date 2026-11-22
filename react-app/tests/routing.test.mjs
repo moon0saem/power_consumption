@@ -13,7 +13,7 @@ test('알 수 없는 주소만 홈으로 이동한다', () => {
   assert.equal(resolveRoute('#/unknown', '', routes), 'home')
 })
 
-test('2차시는 고심이네 집 에너지 다이어트 주소로 이동한다', () => {
+test('2차시는 에너지 다이어트 주소로 이동한다', () => {
   assert.equal(resolveRoute('#/diet', '', routes), 'diet')
 })
 
