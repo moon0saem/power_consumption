@@ -93,6 +93,7 @@
 .savings-impact>header h3{margin:8px 0 0;font-size:24px;line-height:1.45}
 .impact-usage{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:16px 20px;border-bottom:1px solid #ffffff20}
 .impact-usage>div{display:grid;gap:5px}.impact-usage span{font-size:13px;color:#d0dfe4}.impact-usage strong{font-size:22px}.impact-usage strong small{font-size:12px}.impact-usage>i{color:#8fd6b4;font-style:normal}
+.usage-reduction-rate{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;margin:8px 0 0;border-top:1px solid #ffffff24;padding-top:12px}.usage-reduction-rate strong{color:#fff;font-size:22px}.usage-reduction-rate.positive strong{color:#cbed83}
 .impact-metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:16px}
 .impact-metrics article{display:grid;align-content:start;min-height:128px;border:1px solid #ffffff1f;border-radius:15px;padding:13px;background:#ffffff0d}
 .impact-metrics article>i{font-size:25px;font-style:normal}.impact-metrics article>span{margin-top:9px;color:#d2e0e5;font-size:13px;line-height:1.45;font-weight:700}.impact-metrics article>strong{margin-top:8px;font-size:27px}.impact-metrics article>strong small{font-size:12px;color:#e2ecef}.impact-metrics article.positive{border-color:#a9dc794f;background:#a4db6517}.impact-metrics article.positive>strong{color:#cbed83}
