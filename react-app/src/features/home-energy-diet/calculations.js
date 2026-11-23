@@ -102,6 +102,11 @@ export function compareHabits(before, current) {
     const previous = before[id]
     const next = current[id]
     if (next.value < previous.value) changes.push(`${appliance.name}: ${previous.value}${appliance.unit} → ${next.value}${appliance.unit}`)
+    if (next.variant !== previous.variant) {
+      const previousVariant = appliance.variants.find(({ id: variantId }) => variantId === previous.variant)
+      const nextVariant = appliance.variants.find(({ id: variantId }) => variantId === next.variant)
+      if (previousVariant && nextVariant) changes.push(`${appliance.name}: ${previousVariant.name}(${previousVariant.power}W) → ${nextVariant.name}(${nextVariant.power}W)`)
+    }
     if (appliance.ecoFactor && !previous.eco && next.eco) changes.push(`${appliance.name}: 절전 기능 사용`)
     if (appliance.standbyPower && !previous.cutStandby && next.cutStandby) changes.push(`${appliance.name}: 사용하지 않을 때 대기전력 차단`)
   })

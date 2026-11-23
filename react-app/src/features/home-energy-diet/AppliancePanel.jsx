@@ -26,6 +26,13 @@ export default function AppliancePanel({ selectedId, stage, setting, baselineSet
     <aside className={`appliance-panel ${compact ? 'compact' : ''}`}>
       <header><span>{appliance.icon}</span><div><small>{appliance.room}</small><h3>{appliance.name}</h3></div>{onClose && <button type="button" className="panel-close" onClick={onClose} aria-label={`${appliance.name} 설정 닫기`}>×</button>}</header>
       <Slider appliance={appliance} value={setting.value} max={sliderMax} step={sliderStep} onChange={(value) => onChange({ ...setting, value })} />
+      {stage === 3 && appliance.variants.length > 1 && <fieldset className="product-options">
+        <legend>조명 선택</legend>
+        {appliance.variants.map((variant) => <label className={setting.variant === variant.id ? 'active' : ''} key={variant.id}>
+          <input type="radio" name={`${selectedId}-variant`} checked={setting.variant === variant.id} onChange={() => onChange({ ...setting, variant: variant.id })} />
+          <span><b>{variant.name}</b><small>소비전력 {variant.power}W</small></span>
+        </label>)}
+      </fieldset>}
       {appliance.standbyPower && stage === 1 && <label className={`eco-toggle ${setting.standbyConnected ? 'active' : ''}`}><input type="checkbox" checked={setting.standbyConnected} onChange={(event) => onChange({ ...setting, standbyConnected: event.target.checked })} /><span><b>평소 플러그를 꽂아 둠</b><small>사용하지 않을 때도 약 {appliance.standbyPower}W의 대기전력이 발생합니다.</small></span></label>}
       {appliance.standbyPower && stage === 3 && baselineSetting.standbyConnected && <label className={`eco-toggle ${setting.cutStandby ? 'active' : ''}`}><input type="checkbox" checked={setting.cutStandby} onChange={(event) => onChange({ ...setting, cutStandby: event.target.checked })} /><span><b>사용하지 않을 때 대기전력 차단</b><small>스위치형 멀티탭이나 플러그 분리로 대기전력을 줄입니다.</small></span></label>}
       {stage === 3 && appliance.ecoFactor && <label className={`eco-toggle ${setting.eco ? 'active' : ''}`}><input type="checkbox" checked={setting.eco} onChange={(event) => onChange({ ...setting, eco: event.target.checked })} /><span><b>절전 기능 사용</b><small>이 시뮬레이션에서는 {Math.round((1 - appliance.ecoFactor) * 100)}% 감소한다고 가정합니다. 실제 효과는 제품과 사용 환경에 따라 달라집니다.</small></span></label>}

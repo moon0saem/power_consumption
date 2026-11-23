@@ -82,3 +82,13 @@ test('세 구역의 조명은 원형 그래프에서 하나의 조명 항목으�
   assert.equal(grouped.filter((item) => item.id === 'lighting').length, 1)
   assert.equal(grouped.some((item) => item.id === 'bedroomLight'), false)
 })
+
+test('조명을 소비전력이 더 작은 제품으로 바꾸면 사용량과 변경 행동에 반영한다', () => {
+  const before = createInitialHabits()
+  const current = cloneHabits(before)
+  current.livingLight.variant = 'lowPower'
+  const result = calculateApplianceEnergy('livingLight', current.livingLight)
+  assert.equal(result.kwh, 0.12)
+  assert.match(result.formula, /24 W × 5 h/)
+  assert.ok(compareHabits(before, current).some((change) => change.includes('거실 조명') && change.includes('40W') && change.includes('24W')))
+})

@@ -1,7 +1,7 @@
 export const APPLIANCES = {
-  bedroomLight: { id: 'bedroomLight', name: '방 조명', chartGroup: 'lighting', icon: '💡', room: '방', type: 'simplePowerTime', control: 'hours', min: 0, max: 24, step: 1, unit: '시간', defaultValue: 6, variants: [{ id: 'standard', name: '방 전체 LED 조명', power: 30, cost: 0 }] },
-  bathroomLight: { id: 'bathroomLight', name: '화장실 조명', chartGroup: 'lighting', icon: '💡', room: '욕실', type: 'simplePowerTime', control: 'hours', min: 0, max: 24, step: 1, unit: '시간', defaultValue: 2, variants: [{ id: 'standard', name: '욕실 LED 조명', power: 20, cost: 0 }] },
-  livingLight: { id: 'livingLight', name: '거실 조명', chartGroup: 'lighting', icon: '💡', room: '거실', type: 'simplePowerTime', control: 'hours', min: 0, max: 24, step: 1, unit: '시간', defaultValue: 5, variants: [{ id: 'standard', name: '거실 전체 LED 조명', power: 40, cost: 0 }] },
+  bedroomLight: { id: 'bedroomLight', name: '방 조명', chartGroup: 'lighting', icon: '💡', room: '방', type: 'simplePowerTime', control: 'hours', min: 0, max: 24, step: 1, unit: '시간', defaultValue: 6, variants: [{ id: 'standard', name: '기존 조명', power: 30, cost: 0 }, { id: 'lowPower', name: '소비전력이 더 작은 조명', power: 20, cost: 0 }] },
+  bathroomLight: { id: 'bathroomLight', name: '화장실 조명', chartGroup: 'lighting', icon: '💡', room: '욕실', type: 'simplePowerTime', control: 'hours', min: 0, max: 24, step: 1, unit: '시간', defaultValue: 2, variants: [{ id: 'standard', name: '기존 조명', power: 20, cost: 0 }, { id: 'lowPower', name: '소비전력이 더 작은 조명', power: 12, cost: 0 }] },
+  livingLight: { id: 'livingLight', name: '거실 조명', chartGroup: 'lighting', icon: '💡', room: '거실', type: 'simplePowerTime', control: 'hours', min: 0, max: 24, step: 1, unit: '시간', defaultValue: 5, variants: [{ id: 'standard', name: '기존 조명', power: 40, cost: 0 }, { id: 'lowPower', name: '소비전력이 더 작은 조명', power: 24, cost: 0 }] },
   tv: {
     id: 'tv', name: 'TV', icon: '📺', room: '거실', type: 'simplePowerTime', control: 'hours', min: 0, max: 24, step: 1, unit: '시간', defaultValue: 4, standbyPower: 1,
     variants: [{ id: 'standard', name: '가정용 TV', power: 120, cost: 0 }],
