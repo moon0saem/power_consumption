@@ -37,7 +37,7 @@ export default function AppliancePanel({ selectedId, stage, setting, baselineSet
       {selectedId === 'riceCooker' && <p className="model-note">매일 취사 1회에 250Wh를 사용하고, 취사 1시간과 보온 시간을 제외한 동안만 대기전력이 발생한다고 가정합니다.</p>}
       {selectedId === 'washingMachine' && <p className="model-note">세탁기는 단계마다 소비전력이 달라 1회당 350Wh의 교육용 평균 사용량으로 계산합니다.</p>}
       {selectedId === 'iron' && <p className="model-note">1회 30분 사용을 가정하되, 온도조절기가 전원을 반복해서 켜고 끄는 특성을 반영해 정격전력의 60%만 작동한다고 계산합니다.</p>}
-      <div className="appliance-equation"><span>예상 사용량</span><strong>{Math.round(result.kwh * 1000).toLocaleString()} Wh/day</strong><small>{result.formula}</small></div>
+      <div className="appliance-equation"><span>예상 사용량</span><strong>{Math.round(result.kwh * 1000).toLocaleString()} Wh/일</strong><small>{result.formula}</small></div>
     </aside>
   )
 }

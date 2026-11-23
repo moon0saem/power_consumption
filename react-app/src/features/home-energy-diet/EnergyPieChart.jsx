@@ -13,7 +13,7 @@ export default function EnergyPieChart({ items, total }) {
   return (
     <div className="energy-pie-layout">
       <div className="energy-donut" style={{ background: gradient }} role="img" aria-label="기기별 하루 전기 에너지 사용량 비율 원형 그래프">
-        <div><strong>{Math.round(total * 1000).toLocaleString()}</strong><span>Wh/day</span></div>
+        <div><strong>{Math.round(total * 1000).toLocaleString()}</strong><span>Wh/일</span></div>
       </div>
       <div className="energy-pie-legend">
         {segments.map((item) => <div key={item.id}><i style={{ background: item.color }} /><span><b>{item.name}</b><small>{Math.round(item.kwh * 1000).toLocaleString()} Wh</small></span><strong>{item.percentage.toFixed(1)}%</strong></div>)}

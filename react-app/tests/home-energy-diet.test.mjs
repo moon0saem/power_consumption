@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { cloneHabits, createInitialHabits } from '../src/features/home-energy-diet/appliances.js'
-import { calculateApplianceEnergy, calculateEnergyEquivalents, calculateSavingsImpact, compareHabits, groupEnergyForChart, summarizeComparison } from '../src/features/home-energy-diet/calculations.js'
+import { calculateApplianceEnergy, calculateEnergyEquivalents, calculateResidentialElectricityBill, calculateSavingsImpact, compareHabits, groupEnergyForChart, summarizeComparison } from '../src/features/home-energy-diet/calculations.js'
 
 test('일반 기기는 소비 전력 × 사용 시간으로 하루 사용량을 계산한다', () => {
   const result = calculateApplianceEnergy('tv', { value: 4, variant: 'standard', eco: false })
@@ -37,7 +37,12 @@ test('하루 사용량을 자전거 발전 시간과 전기차 주행거리로 �
 
 test('하루 절감량을 탄소, 전기요금, 소나무 효과로 환산한다', () => {
   const impact = calculateSavingsImpact({ before: { total: 10 }, current: { total: 8 }, saved: 2, rate: 20 })
-  assert.deepEqual(impact, { monthlyCo2Before: 136.2, monthlyCo2After: 109, reductionRate: 20, monthlyCostSaved: 12000, annualTreeEffect: 49.5, monthlyKwhSaved: 60 })
+  assert.deepEqual(impact, { monthlyCo2Before: 136.2, monthlyCo2After: 109, reductionRate: 20, monthlyCostSaved: 12480, annualTreeEffect: 49.5, monthlyKwhSaved: 60 })
+})
+
+test('주택용 저압 누진요금과 부가세·전력산업기반기금을 반영한다', () => {
+  assert.equal(calculateResidentialElectricityBill(300), 43230)
+  assert.equal(calculateResidentialElectricityBill(240), 30750)
 })
 
 test('세탁기와 전기다리미는 일주일 사용 횟수를 하루 평균 사용량으로 계산한다', () => {

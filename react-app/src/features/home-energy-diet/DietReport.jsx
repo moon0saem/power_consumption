@@ -9,16 +9,16 @@ export default function DietReport({ comparison, changes, onClose }) {
       <h2 id="diet-result-title">내가 만든 변화의 결과</h2>
 
       <div className="report-energy-flow">
-        <article><span>처음 사용량</span><strong>{Math.round(comparison.before.total * 1000).toLocaleString()}</strong><small>Wh/day</small></article>
+        <article><span>처음 사용량</span><strong>{Math.round(comparison.before.total * 1000).toLocaleString()}</strong><small>Wh/일</small></article>
         <i aria-hidden="true">→</i>
-        <article className="current"><span>현재 사용량</span><strong>{Math.round(comparison.current.total * 1000).toLocaleString()}</strong><small>Wh/day</small></article>
+        <article className="current"><span>현재 사용량</span><strong>{Math.round(comparison.current.total * 1000).toLocaleString()}</strong><small>Wh/일</small></article>
         <article className="rate"><span>절감률</span><strong>{comparison.rate.toFixed(1)}%</strong></article>
       </div>
 
       <div className="report-effects">
         <article><i aria-hidden="true">☁️</i><span>월간 탄소 배출량</span><div><b>{impact.monthlyCo2Before}</b><em>→</em><strong>{impact.monthlyCo2After}</strong><small>kgCO₂e</small></div></article>
-        <article><i aria-hidden="true">💰</i><span>월간 예상 전기 에너지 비용 절감 효과</span><strong>{impact.monthlyCostSaved.toLocaleString()}<small>원</small></strong></article>
-        <article><i aria-hidden="true">🌲</i><span>연간 소나무 흡수량 환산 효과</span><strong>{impact.annualTreeEffect.toFixed(1)}<small>그루</small></strong></article>
+        <article><i aria-hidden="true">💰</i><span>전기 요금 절감 효과</span><strong>{impact.monthlyCostSaved.toLocaleString()}<small>원/월</small></strong></article>
+        <article><i aria-hidden="true">🌲</i><span>소나무 심기 환산 효과</span><strong>{impact.annualTreeEffect.toFixed(1)}<small>그루/연</small></strong></article>
       </div>
 
       <p className="report-assumption">이 결과에는 이해를 돕기 위한 교육용 가정이 포함되어 있습니다.</p>

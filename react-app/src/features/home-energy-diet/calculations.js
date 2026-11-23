@@ -4,9 +4,16 @@ const round = (value, digits = 3) => Number(value.toFixed(digits))
 export const BICYCLE_GENERATOR_POWER_W = 100
 export const EV_DISTANCE_PER_KWH = 5
 export const CO2_PER_KWH = 0.4541
-export const COST_PER_KWH = 200
 export const TREE_CO2_PER_YEAR = 6.6
 export const BILLING_DAYS_PER_MONTH = 30
+export const RESIDENTIAL_LOW_VOLTAGE_TIERS = [
+  { limit: 100, rate: 59.1, basicCharge: 400 },
+  { limit: 200, rate: 122.6, basicCharge: 890 },
+  { limit: 300, rate: 183, basicCharge: 1560 },
+  { limit: 400, rate: 273.2, basicCharge: 3750 },
+  { limit: 500, rate: 406.7, basicCharge: 7110 },
+  { limit: Infinity, rate: 690.8, basicCharge: 12600 },
+]
 
 function standbyEnergy(appliance, setting, activeHours) {
   if (!appliance.standbyPower || !setting.standbyConnected || setting.cutStandby) return 0
@@ -116,17 +123,38 @@ export function calculateEnergyEquivalents(totalKwh) {
   }
 }
 
+export function calculateResidentialElectricityBill(monthlyKwh) {
+  const usage = Math.max(0, monthlyKwh)
+  let previousLimit = 0
+  let energyCharge = 0
+
+  for (const tier of RESIDENTIAL_LOW_VOLTAGE_TIERS) {
+    const tierUsage = Math.max(0, Math.min(usage, tier.limit) - previousLimit)
+    energyCharge += tierUsage * tier.rate
+    if (usage <= tier.limit) break
+    previousLimit = tier.limit
+  }
+
+  const billingTier = RESIDENTIAL_LOW_VOLTAGE_TIERS.find(({ limit }) => usage <= limit)
+  const subtotal = Math.max(1000, billingTier.basicCharge + Math.floor(energyCharge))
+  const vat = Math.round(subtotal * 0.1)
+  const powerIndustryFund = Math.floor(subtotal * 0.037 / 10) * 10
+  return Math.floor((subtotal + vat + powerIndustryFund) / 10) * 10
+}
+
 export function calculateSavingsImpact(comparison) {
   const monthlyKwhBefore = comparison.before.total * BILLING_DAYS_PER_MONTH
   const monthlyKwhAfter = comparison.current.total * BILLING_DAYS_PER_MONTH
   const monthlyKwhSaved = comparison.saved * BILLING_DAYS_PER_MONTH
   const monthlyCo2After = monthlyKwhAfter * CO2_PER_KWH
   const monthlyCo2Saved = monthlyKwhSaved * CO2_PER_KWH
+  const monthlyBillBefore = calculateResidentialElectricityBill(monthlyKwhBefore)
+  const monthlyBillAfter = calculateResidentialElectricityBill(monthlyKwhAfter)
   return {
     monthlyCo2Before: round(monthlyKwhBefore * CO2_PER_KWH, 1),
     monthlyCo2After: round(monthlyCo2After, 1),
     reductionRate: round(comparison.rate, 1),
-    monthlyCostSaved: Math.round(monthlyKwhSaved * COST_PER_KWH),
+    monthlyCostSaved: Math.max(0, monthlyBillBefore - monthlyBillAfter),
     annualTreeEffect: round(monthlyCo2Saved * 12 / TREE_CO2_PER_YEAR, 1),
     monthlyKwhSaved: round(monthlyKwhSaved, 1),
   }
