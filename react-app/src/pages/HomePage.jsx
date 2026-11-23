@@ -24,8 +24,6 @@ export default function HomePage({ navigate }) {
       <div className="home-energy-visual" aria-hidden="true">
         <div className="energy-ring ring-outer" />
         <div className="energy-ring ring-inner" />
-        <div className="energy-badge badge-w">W</div>
-        <div className="energy-badge badge-kwh">kWh</div>
         <div className="home-bolt">⚡</div>
       </div>
     </section>
