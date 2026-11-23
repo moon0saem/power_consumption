@@ -22,6 +22,15 @@ test('에어컨은 첫 1시간 1,800W, 이후 시간은 600W로 계산한다', (
   assert.match(result.formula, /600 W × 4 h/)
 })
 
+test('에어컨에는 별도의 절전 모드 계수를 적용하지 않는다', () => {
+  const result = calculateApplianceEnergy('ac', { value: 5, variant: 'standard', eco: true })
+  assert.equal(result.kwh, 4.2)
+  const before = createInitialHabits()
+  const current = cloneHabits(before)
+  current.ac.eco = true
+  assert.equal(compareHabits(before, current).some((change) => change.includes('에어컨: 절전 기능')), false)
+})
+
 test('하루 사용량을 자전거 발전 시간과 전기차 주행거리로 환산한다', () => {
   assert.deepEqual(calculateEnergyEquivalents(4.2), { bicycleHours: 42, evDistanceKm: 21 })
 })

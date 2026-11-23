@@ -7,7 +7,7 @@ export const APPLIANCES = {
     variants: [{ id: 'standard', name: '가정용 TV', power: 120, cost: 0 }],
   },
   ac: {
-    id: 'ac', name: '에어컨', icon: '❄️', room: '거실', type: 'airConditionerModel', control: 'hours', min: 0, max: 24, step: 1, unit: '시간', defaultValue: 5, ecoFactor: 0.82,
+    id: 'ac', name: '에어컨', icon: '❄️', room: '거실', type: 'airConditionerModel', control: 'hours', min: 0, max: 24, step: 1, unit: '시간', defaultValue: 5,
     variants: [{ id: 'standard', name: '기존 에어컨', power: 1800, steadyPower: 600, cost: 0 }],
   },
   pc: { id: 'pc', name: 'PC', icon: '🖥️', room: '방', type: 'simplePowerTime', control: 'hours', min: 0, max: 24, step: 1, unit: '시간', defaultValue: 4, ecoFactor: 0.65, variants: [{ id: 'standard', name: '기존 PC', power: 200, cost: 0 }] },
